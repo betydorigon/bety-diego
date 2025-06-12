@@ -5,6 +5,13 @@
   <meta charset="UTF-8" />
   <title>Bety ❤️ Diego</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Estilo simples para o checkbox */
+    #showPassword {
+      margin-left: 5px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
 
@@ -12,8 +19,13 @@
   <div id="loginContainer" class="container">
     <h2>Bem-vindo 💖</h2>
     <p>Digite seu nome de usuário e senha:</p>
-    <input type="text" id="username" placeholder="Usuário" /><br /><br />
-    <input type="password" id="password" placeholder="Senha" /><br /><br />
+    <input type="text" id="username" placeholder="Usuário" autocapitalize="none" autocomplete="off" /><br /><br />
+    <input type="password" id="password" placeholder="Senha" autocapitalize="none" autocomplete="off" /><br />
+    <label>
+      <input type="checkbox" id="showPassword" />
+      Mostrar senha
+    </label>
+    <br /><br />
     <button onclick="login()">Entrar</button>
     <p id="loginError" style="color: red;"></p>
   </div>
@@ -76,9 +88,11 @@
   <script>
     // Login simples
     function login() {
-      const user = document.getElementById("username").value;
-      const pass = document.getElementById("password").value;
+      const user = document.getElementById("username").value.trim();
+      const pass = document.getElementById("password").value.trim();
       const error = document.getElementById("loginError");
+
+      console.log("Usuário:", `"${user}"`, "Senha:", `"${pass}"`); // para debug no console
 
       if (user === "DiegoDorigon" && pass === "Bety2003") {
         document.getElementById("loginContainer").style.display = "none";
@@ -88,6 +102,18 @@
       }
     }
 
+    // Mostrar/esconder senha
+    const showPassword = document.getElementById("showPassword");
+    const passwordInput = document.getElementById("password");
+
+    showPassword.addEventListener("change", () => {
+      if (showPassword.checked) {
+        passwordInput.type = "text";
+      } else {
+        passwordInput.type = "password";
+      }
+    });
+
     // Corações voando
     const kissButton = document.getElementById("kissButton");
     kissButton.addEventListener("click", () => {
@@ -95,14 +121,11 @@
         const heart = document.createElement("div");
         heart.className = "heart";
 
-        // Posição horizontal aleatória
         heart.style.left = Math.random() * window.innerWidth + "px";
-        // Começa na parte de baixo da tela, perto do botão
         heart.style.top = window.innerHeight - 50 + "px";
 
         document.body.appendChild(heart);
 
-        // Remove após animação
         setTimeout(() => {
           heart.remove();
         }, 1500);
@@ -126,12 +149,9 @@
       }
     });
 
-    // Carregar a API do YouTube
     let tag = document.createElement("script");
     tag.src = "https://www.youtube.com/iframe_api";
     document.body.appendChild(tag);
   </script>
 </body>
 </html>
-
-
