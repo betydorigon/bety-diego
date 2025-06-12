@@ -1,45 +1,137 @@
-<!--
-  Hit RUN to see this project in action!
-  
-  This project will auto-refresh as you edit the HTML, CSS and JS. See README.md for more info (including how to disable auto-refresh and install packages).
--->
 
 <!DOCTYPE html>
-<html>
-
+<html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Replit</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+  <meta charset="UTF-8" />
+  <title>Bety ❤️ Diego</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-  <main>
-    <h1 class="title">Welcome to HTML on Replit!</h1>
-    <p class="description">Get started by editing
-      <code class="code">index.html</code>. The webview will auto-refresh as you edit! (See <code
-        class="code">README.md</code> if you want to
-      disable auto-refresh.)
+
+  <!-- LOGIN -->
+  <div id="loginContainer" class="container">
+    <h2>Bem-vindo 💖</h2>
+    <p>Digite seu nome de usuário e senha:</p>
+    <input type="text" id="username" placeholder="Usuário" /><br /><br />
+    <input type="password" id="password" placeholder="Senha" /><br /><br />
+    <button onclick="login()">Entrar</button>
+    <p id="loginError" style="color: red;"></p>
+  </div>
+
+  <!-- CONTEÚDO DO SITE ROMÂNTICO -->
+  <div id="siteContent" class="container" style="display: none;">
+    <h1>Bety ❤️ Diego</h1>
+
+    <!-- FOTOS -->
+    <div class="photos">
+      <img src="images/bety_diego.jpg" alt="Bety e Diego" />
+      <img src="images/bety-diego.jpg" alt="Bety e Diego" />
+      <img src="images/bety.diego.jpg" alt="Bety e Diego" />
+      <img src="images/betydiego.jpg" alt="Bety e Diego" />
+      <img src="images/betyediego.jpg" alt="Bety e Diego" />
+    </div>
+
+    <!-- DECLARAÇÃO -->
+    <p>
+      Oi, meu amor...
+
+      Hoje eu quis fazer diferente. Não é um presente comprado, não é algo caro...
+      É algo feito com carinho, com cuidado, e com o coração.
+
+      Eu poderia te escrever mil palavras, mas nenhuma seria capaz de traduzir o que sinto por você.
+      Porque o que vivemos não cabe num simples texto. Cabe num olhar, num café compartilhado, num carinho nos nossos gatos, num “cheguei” depois de um dia cheio.
+
+      Com você, eu aprendi que o amor verdadeiro não precisa de cenas de filme.
+      Ele está na rotina, na fé que a gente divide, nas risadas bobas, nos planos de futuro e até nas brigas seguidas de “vem cá, me dá um beijo”.
+
+      A gente não é perfeito, mas somos reais.
+      E é por isso que te amo tanto.
+      Te amo porque você é meu parceiro de vida, de oração, de Netflix e até de Velozes e Furiosos (mesmo quando já vimos 18 vezes 🤣).
+
+      Obrigada por existir.
+      Obrigada por ser esse homem incrível que Deus colocou na minha vida.
+      Te amo ontem, hoje e vou continuar amando todos os dias, até o fim da estrada. 🚗💨
+
+      Feliz Dia dos Namorados. Com todo o meu amor,
+      Bety ☕🐱❤️
     </p>
 
-    <section class="grid">
-      <a href="https://replit.com/learn" class='card'>
-        <h2>Learn &rarr;</h2>
-        <p>Find tutorials on Replit to learn more.</p>
-      </a>
+    <!-- BOTÕES -->
+    <div class="buttonGroup">
+      <button id="kissButton">Enviar um beijo 😘</button>
+      <button id="btnPlayPause">Pausar Música</button>
+    </div>
 
-      <a href="https://docs.replit.com/category/deployments" class='card'>
-        <h2>Deploy &rarr;</h2>
-        <p>
-          After you are happy with this app, deploy it on Replit!
-        </p>
-      </a>
-    </section>
-  </main>
+    <!-- MÚSICA YOUTUBE ESCONDIDA -->
+    <iframe
+      id="audioPlayer"
+      src="https://www.youtube.com/embed/Me7e_jdO4Sk?enablejsapi=1&autoplay=1&loop=1&playlist=Me7e_jdO4Sk"
+      style="width: 0; height: 0; border: 0; position: absolute;"
+      allow="autoplay; encrypted-media"
+      frameborder="0"
+    ></iframe>
+  </div>
 
-  <script type="module" src="script.js"></script>
+  <!-- SCRIPTS -->
+  <script>
+    // Login simples
+    function login() {
+      const user = document.getElementById("username").value;
+      const pass = document.getElementById("password").value;
+      const error = document.getElementById("loginError");
 
+      if (user === "DiegoDorigon" && pass === "Bety2003") {
+        document.getElementById("loginContainer").style.display = "none";
+        document.getElementById("siteContent").style.display = "block";
+      } else {
+        error.textContent = "Usuário ou senha incorretos! 💔";
+      }
+    }
+
+    // Corações voando
+    const kissButton = document.getElementById("kissButton");
+    kissButton.addEventListener("click", () => {
+      for (let i = 0; i < 30; i++) {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+
+        // Posição horizontal aleatória
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        // Começa na parte de baixo da tela, perto do botão
+        heart.style.top = window.innerHeight - 50 + "px";
+
+        document.body.appendChild(heart);
+
+        // Remove após animação
+        setTimeout(() => {
+          heart.remove();
+        }, 1500);
+      }
+    });
+
+    // YouTube API para controlar a música
+    let player;
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player("audioPlayer");
+    }
+
+    const btn = document.getElementById("btnPlayPause");
+    btn.addEventListener("click", function () {
+      if (player && player.getPlayerState() === 1) {
+        player.pauseVideo();
+        btn.textContent = "Tocar Música";
+      } else {
+        player.playVideo();
+        btn.textContent = "Pausar Música";
+      }
+    });
+
+    // Carregar a API do YouTube
+    let tag = document.createElement("script");
+    tag.src = "https://www.youtube.com/iframe_api";
+    document.body.appendChild(tag);
+  </script>
 </body>
-
 </html>
+
+
