@@ -1,102 +1,110 @@
-/* Container geral */
+/* RESET E BASE */
+body, html {
+  margin: 0;
+  padding: 0;
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: Arial, sans-serif;
+  background-color: #fff8f0; /* tom clarinho e aconchegante */
+  color: #333;
+}
+
+/* CONTAINER */
 .container {
-  max-width: 700px;
-  margin: 20px auto;
   padding: 20px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #fff0f6;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-sizing: border-box;
+  max-width: 100%;
   text-align: center;
 }
 
-/* Fotos */
-.container img {
-  max-width: 120px; /* largura fixa confortável */
-  height: auto; /* altura automática pra manter proporção */
-  margin: 10px;
+/* FOTOS */
+.photos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.photos img {
+  width: calc(20% - 10px); /* 5 fotos lado a lado com espaçamento */
+  max-height: 150px;
+  object-fit: cover;
   border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
   transition: transform 0.3s ease;
   cursor: pointer;
 }
 
-.container img:hover {
-  transform: scale(1.1);
+.photos img:hover {
+  transform: scale(1.05);
 }
 
-/* Texto da declaração */
-.container p {
+/* INPUTS E BOTÕES */
+input[type="text"],
+input[type="password"],
+button {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  font-size: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+button:hover {
+  border-color: #ff6f61;
+  outline: none;
+  cursor: pointer;
+}
+
+/* PARÁGRAFOS */
+p {
+  max-width: 600px;
+  margin: 0 auto 20px;
   font-size: 1.1rem;
   line-height: 1.5;
-  color: #4a3c8c;
-  margin-top: 20px;
-  white-space: pre-line; /* mantém quebras de linha do texto */
+  padding: 0 10px;
 }
 
-/* Botões estilizados */
-button {
-  background-color: #a349a4;
-  color: white;
-  border: none;
-  padding: 12px 28px;
-  margin: 15px 10px 0 10px;
-  border-radius: 25px; /* arredondado */
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 4px 8px rgba(163, 73, 164, 0.4);
-  transition: background-color 0.3s ease;
+/* GRUPO DE BOTÕES */
+.buttonGroup {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
 }
 
-button:hover {
-  background-color: #7a2c7a;
+/* RESPONSIVIDADE */
+@media (max-width: 600px) {
+  .photos img {
+    width: 90%;
+    max-height: none;
+  }
+
+  p {
+    font-size: 1rem;
+    padding: 0 10px;
+  }
+
+  .buttonGroup {
+    flex-direction: column;
+  }
 }
 
-/* Corações voando */
-.heart {
-  position: fixed;
-  width: 20px;
-  height: 20px;
-  background: red;
-  transform: rotate(45deg);
-  left: 0;
-  top: 0;
-  pointer-events: none;
-  animation: flyUp 1.5s forwards;
-  z-index: 1000;
-}
-
-/* Coração formado por quadrados */
-.heart::before,
-.heart::after {
-  content: "";
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background: red;
-  border-radius: 50%;
-}
-
-.heart::before {
-  top: -10px;
-  left: 0;
-}
-
-.heart::after {
-  left: 10px;
-  top: 0;
-}
-
-/* Animação dos corações subindo e sumindo */
-@keyframes flyUp {
+@keyframes floatUp {
   0% {
-    opacity: 1;
-    transform: translateY(0) rotate(45deg) scale(1);
+    transform: translateY(0) scale(1);
+    opacity: 0.8;
   }
   100% {
+    transform: translateY(-150px) scale(1.5);
     opacity: 0;
-    transform: translateY(-100px) rotate(45deg) scale(0.5);
   }
 }
-
